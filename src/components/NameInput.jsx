@@ -12,7 +12,7 @@ const NameInput = ({ person, sendInput }) => {
   };
 
   return (
-    <div>
+    <div className='grow'>
       <h1 className='font-semibold text-lg pb-1'>{person}</h1>
       <input
         className='p-2 rounded-md outline-none indent-1 w-full bg-slate-100'

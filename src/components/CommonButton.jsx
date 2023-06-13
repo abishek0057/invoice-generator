@@ -1,15 +1,13 @@
 import React from "react";
 
-const CommonButton = ({ btnName, onBtnClick, paddingX }) => {
+const CommonButton = ({ btnName, onBtnClick, customCSS }) => {
   return (
-    <div>
-      <button
-        className={`rounded-md bg-blue-800 py-2 text-white text-base px-${paddingX}`}
-        onClick={onBtnClick}
-      >
-        {btnName}
-      </button>
-    </div>
+    <button
+      className={`rounded-md bg-blue-800 p-2 text-white text-base ${customCSS}`}
+      onClick={onBtnClick}
+    >
+      {btnName}
+    </button>
   );
 };
 
