@@ -5,17 +5,14 @@ const NameInput = ({ person, sendInput }) => {
 
   const handleChange = (e) => {
     setName(e.target.value);
-    sendInput({
-      value: e.target.value,
-      type: person.replace(":", "").toLowerCase(),
-    });
+    sendInput({ value: { [person]: e.target.value } });
   };
 
   return (
     <div className='grow'>
-      <h1 className='font-semibold text-lg pb-1'>{person}</h1>
+      <h1 className='pb-1 text-lg font-semibold'>{person}</h1>
       <input
-        className='p-2 rounded-md outline-none indent-1 w-full bg-slate-100'
+        className='p-2 w-full rounded-md outline-none indent-1 bg-slate-100'
         type='text'
         placeholder={person.replace(":", "") + " name"}
         onChange={handleChange}

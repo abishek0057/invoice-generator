@@ -4,23 +4,20 @@ const RateInput = ({ sendInput, title }) => {
   const [inputValue, setInputValue] = useState("");
   const handleChange = (e) => {
     setInputValue(e.target.value);
-    sendInput({
-      value: e.target.value,
-      type: title.toLowerCase().split(" ")[0],
-    });
+    sendInput({ value: { [title]: e.target.value } });
   };
   return (
     <div className='w-full'>
-      <h1 className='font-semibold text-lg pb-2'>{title}</h1>
+      <h1 className='pb-2 text-lg font-semibold'>{title}</h1>
       <div className='flex items-center'>
         <input
-          className='p-2 rounded-l-md outline-none indent-1 w-full'
+          className='p-2 w-full rounded-l-md outline-none indent-1'
           type='number'
           placeholder='0.0'
           onChange={handleChange}
           value={inputValue}
         />
-        <span className='rounded-r-md bg-gray-200 py-2 px-4 text-gray-500 '>
+        <span className='px-4 py-2 text-gray-500 bg-gray-200 rounded-r-md'>
           %
         </span>
       </div>

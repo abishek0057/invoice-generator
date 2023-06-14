@@ -17,56 +17,38 @@ const App = () => {
     taxRate: 0,
     discountRate: 0,
   });
+  console.log(inputValues);
   const ReceiveInput = (recValue) => {
-    switch (recValue.type) {
-      case "date":
-        SetinputValues({ ...inputValues, date: recValue.value });
-        break;
-      case "invoice":
-        SetinputValues({ ...inputValues, billNo: recValue.value });
-        break;
-      case "cashier":
-        SetinputValues({ ...inputValues, cashierName: recValue.value });
-        break;
-      case "customer":
-        SetinputValues({ ...inputValues, customerName: recValue.value });
-        break;
-      case "tax":
-        SetinputValues({ ...inputValues, taxRate: recValue.value });
-        break;
-      case "discount":
-        SetinputValues({ ...inputValues, discountRate: recValue.value });
-        break;
-    }
+    console.log(recValue.value);
+    SetinputValues({ ...inputValues, ...recValue.value });
   };
   return (
-    <div className='flex flex-col md:flex-row max-w-7xl gap-x-3 mx-auto md:items-start mt-5'>
-      <div className='p-2 rounded-md bg-white flex-grow'>
-        <div className='flex flex-wrap justify-between items-center'>
+    <div className="flex flex-col gap-x-3 mx-auto mt-5 max-w-7xl md:flex-row md:items-start">
+      <div className="flex-grow p-2 bg-white rounded-md">
+        <div className="flex flex-wrap justify-between items-center">
           <DatePicker sendInput={ReceiveInput} />
           <InvoiceNumber sendInput={ReceiveInput} />
         </div>
         <hr />
-        <h1 className='text-center text-3xl py-2 font-semibold'>INVOICE</h1>
-        <div className='flex gap-3 justify-start items-center pt-5 w-full'>
-          <NameInput person={"Cashier:"} sendInput={ReceiveInput} />
-          <NameInput person={"Customer:"} sendInput={ReceiveInput} />
+        <h1 className="py-2 text-3xl font-semibold text-center">INVOICE</h1>
+        <div className="flex gap-3 justify-start items-center pt-5 w-full">
+          <NameInput person={"cashierName"} sendInput={ReceiveInput} />
+          <NameInput person={"customerName"} sendInput={ReceiveInput} />
         </div>
         <InvoiceTable setItemData={setItemData} itemData={itemData} />
         <Total inputValues={inputValues} itemData={itemData} />
       </div>
-      <div className=' sticky top-5 flex flex-col justify-center px-2 md:w-3/12 gap-y-3'>
+      <div className="flex sticky top-5 flex-col gap-y-3 justify-center px-2 md:w-3/12">
         <CommonButton
-          btnName='Review Invoice'
-          customCSS='w-full'
+          btnName="Review Invoice"
+          customCSS="w-full"
           onBtnClick={(e) => console.log(itemData)}
         />
-        <RateInput title='Tax rate:' sendInput={ReceiveInput} />
-        <RateInput title='Discount rate:' sendInput={ReceiveInput} />
+        <RateInput title="taxRate" sendInput={ReceiveInput} />
+        <RateInput title="discountRate" sendInput={ReceiveInput} />
       </div>
     </div>
   );
 };
 
 export default App;
-

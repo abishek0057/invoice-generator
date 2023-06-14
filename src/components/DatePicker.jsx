@@ -5,15 +5,15 @@ const DatePicker = ({ sendInput }) => {
 
   const handleChange = (e) => {
     setDate(e.target.value);
-    sendInput({ value: e.target.value, type: "date" });
+    sendInput({ value: { date: e.target.value } });
   };
 
   return (
-    <div className='pt-2'>
-      <label className='text-lg font-semibold mr-2'>Bill Date:</label>
+    <div className="pt-2">
+      <label className="mr-2 text-lg font-semibold">Bill Date:</label>
       <input
-        type='date'
-        className='outline-none text-base font-normal bg-transparent'
+        type="date"
+        className="text-base font-normal bg-transparent outline-none"
         value={date}
         onChange={handleChange}
       />

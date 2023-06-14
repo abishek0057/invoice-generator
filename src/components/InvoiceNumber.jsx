@@ -5,15 +5,15 @@ const InvoiceNumber = ({ sendInput }) => {
 
   const handleChange = (e) => {
     setInvoiceNum(e.target.value);
-    sendInput({ value: e.target.value, type: "invoice" });
+    sendInput({ value: { billNo: e.target.value } });
   };
 
   return (
     <div className='py-3'>
-      <label className='text-lg font-semibold mr-2'>Invoice Number: </label>
+      <label className='mr-2 text-lg font-semibold'>Invoice Number: </label>
       <input
         type='number'
-        className='outline-none text-base font-normal bg-slate-100 p-2 rounded-md w-5/12'
+        className='p-2 w-5/12 text-base font-normal rounded-md outline-none bg-slate-100'
         value={invoiceNum}
         onChange={handleChange}
       />
