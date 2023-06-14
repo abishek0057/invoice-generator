@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 
-const RateInput = ({ sendInput, title, type }) => {
+const RateInput = ({ sendInput, title }) => {
   const [inputValue, setInputValue] = useState("");
   const handleChange = (e) => {
     setInputValue(e.target.value);
-    sendInput({ value: e.target.value, type });
+    sendInput({
+      value: e.target.value,
+      type: title.toLowerCase().split(" ")[0],
+    });
   };
   return (
     <div className='w-full'>
