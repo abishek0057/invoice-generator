@@ -1,38 +1,30 @@
-import React, { useEffect } from "react";
-import { useFieldArray, useForm } from "react-hook-form";
+import React, { useState } from "react";
 import CommonButton from "./CommonButton";
 
 const InvoiceTable = ({ itemData, setItemData }) => {
-  const {
-    register,
-    handleSubmit,
-    control,
-    watch,
-    formState: { errors },
-  } = useForm({
-    defaultValues: {
-      itemData: [
-        {
-          itemName: "",
-          itemQuantity: 1,
-          itemRate: "",
-        },
-      ],
-    },
-  });
-
-  const { fields, append, remove } = useFieldArray({
-    name: "itemData",
-    control,
-  });
-
-  const onSubmit = (data) => {
-    console.log(data.itemData);
-    setItemData(data.itemData);
+  const handleChange = (e, index, key) => {
+    const { value } = e.target;
+    setItemData((prevItemData) => {
+      const updatedItemData = [...prevItemData];
+      updatedItemData[index] = {
+        ...updatedItemData[index],
+        [key]: value,
+      };
+      return updatedItemData;
+    });
   };
 
+  const handleDelete = (index) => {
+    setItemData((prevItemData) => {
+      const updatedItemData = [...prevItemData];
+      updatedItemData.splice(index, 1);
+      return updatedItemData;
+    });
+  };
+
+  console.log(itemData);
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form>
       <table className='w-full mt-8'>
         <thead>
           <tr>
@@ -44,15 +36,18 @@ const InvoiceTable = ({ itemData, setItemData }) => {
           </tr>
         </thead>
         <tbody>
-          {fields.map((field, index) => {
+          {itemData.map((item, index) => {
             return (
-              <tr className='w-full h-12' key={field.id}>
+              <tr className='w-full h-12' key={index}>
                 <td className='w-6/12'>
                   <input
+                    autoFocus
+                    required
                     type='text'
                     className='outline-none text-base font-normal bg-slate-100 p-2 rounded-md w-full'
                     placeholder='Item Name'
-                    {...register(`itemData.${index}.itemName`)}
+                    value={item.itemName}
+                    onChange={(e) => handleChange(e, index, "itemName")}
                   />
                 </td>
                 <td className='w-2/12'>
@@ -60,7 +55,8 @@ const InvoiceTable = ({ itemData, setItemData }) => {
                     type='number'
                     className='outline-none text-base font-normal bg-slate-100 p-2 rounded-md w-full'
                     placeholder='0'
-                    {...register(`itemData.${index}.itemQuantity`)}
+                    value={item.itemQuantity}
+                    onChange={(e) => handleChange(e, index, "itemQuantity")}
                   />
                 </td>
                 <td className='w-2/12'>
@@ -68,7 +64,8 @@ const InvoiceTable = ({ itemData, setItemData }) => {
                     type='number'
                     className='outline-none text-base font-normal bg-slate-100 p-2 rounded-md w-full'
                     placeholder='1'
-                    {...register(`itemData.${index}.itemRate`)}
+                    value={item.itemRate}
+                    onChange={(e) => handleChange(e, index, "itemRate")}
                   />
                 </td>
                 <td className='w-3/12'>
@@ -76,13 +73,18 @@ const InvoiceTable = ({ itemData, setItemData }) => {
                     type='number'
                     className='outline-none text-base font-normal bg-slate-100 p-2 rounded-md w-full'
                     readOnly
+                    value={
+                      item.itemRate
+                        ? item.itemQuantity * Number(item.itemRate)
+                        : "0.0"
+                    }
                   />
                 </td>
                 <td className='flex justify-center items-center'>
                   {index > 0 && (
                     <button
                       className='text-2xl hover:cursor-pointer hover:scale-110'
-                      onClick={() => remove(index)}
+                      onClick={(e) => handleDelete(index)}
                       type='button'
                     >
                       ❌
@@ -97,9 +99,16 @@ const InvoiceTable = ({ itemData, setItemData }) => {
       <CommonButton
         customCSS={"mt-5"}
         btnName='Add Items'
-        onBtnClick={() =>
-          append({ itemName: "", itemQuantity: 0, itemRate: "" })
-        }
+        onBtnClick={(e) => {
+          setItemData((prevItemData) => [
+            ...prevItemData,
+            {
+              itemName: "",
+              itemQuantity: 1,
+              itemRate: "",
+            },
+          ]);
+        }}
       />
     </form>
   );

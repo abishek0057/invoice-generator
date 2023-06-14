@@ -8,15 +8,23 @@ import InvoiceTable from "./components/InvoiceTable";
 import Total from "./components/Total";
 
 const App = () => {
-  const [itemData, setItemData] = useState([]);
-  const [inputValues, SetinputValues] = useState({
-    date: new Date().toJSON().slice(0, 10),
-    billNo: 1,
-    cashierName: "",
-    customerName: "",
-    taxRate: 0,
-    discountRate: 0,
-  });
+  const [itemData, setItemData] = useState([
+    {
+      itemName: "",
+      itemQuantity: 1,
+      itemRate: "",
+    },
+  ]);
+  const [inputValues, SetinputValues] = useState([
+    {
+      date: new Date().toJSON().slice(0, 10),
+      billNo: 1,
+      cashierName: "",
+      customerName: "",
+      taxRate: 0,
+      discountRate: 0,
+    },
+  ]);
   const ReceiveInput = (recValue) => {
     switch (recValue.type) {
       case "date":
