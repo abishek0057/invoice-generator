@@ -2,12 +2,28 @@ import React, { useState } from "react";
 
 const RateInput = ({ sendInput, title }) => {
   const [inputValue, setInputValue] = useState("");
+  const [validInp, setValidInp] = useState(true);
   const handleChange = (e) => {
-    setInputValue(e.target.value);
-    sendInput({
-      value: e.target.value,
-      type: title.toLowerCase().split(" ")[0],
-    });
+    console.log(e.target.value.length, e.target.value);
+    const inpVal = e.target.value;
+    if (inpVal === "") {
+      setValidInp(true);
+      setInputValue("");
+      sendInput({
+        value: 0,
+        type: title.toLowerCase().split(" ")[0],
+      });
+    } else if (/^(?:[1-9][0-9]?|100)$/.test(inpVal)) {
+      setValidInp(true);
+      setInputValue(inpVal);
+      sendInput({
+        value: parseInt(inpVal),
+        type: title.toLowerCase().split(" ")[0],
+      });
+    } else {
+      setValidInp(false);
+      setInputValue(inpVal);
+    }
   };
   return (
     <div className='w-full'>
@@ -24,6 +40,11 @@ const RateInput = ({ sendInput, title }) => {
           %
         </span>
       </div>
+      {!validInp && (
+        <p className='text-red-600 pl-2'>
+          {title.toLowerCase().replace(":", "")} must be between 0 and 100
+        </p>
+      )}
     </div>
   );
 };

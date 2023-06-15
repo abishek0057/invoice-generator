@@ -3,11 +3,10 @@ import Calculation from "../helper/calculation";
 
 const Total = ({ itemData, inputValues }) => {
   const itemCalculation = new Calculation(
-    itemData,
+    itemData.filter((e) => e.itemName != ""),
     inputValues.discountRate,
     inputValues.taxRate
   );
-
   return (
     <div className='flex flex-col items-end space-y-1 pt-5 mr-5'>
       <div className='flex w-full justify-between md:w-1/2'>

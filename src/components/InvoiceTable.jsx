@@ -22,7 +22,6 @@ const InvoiceTable = ({ itemData, setItemData }) => {
     });
   };
 
-  console.log(itemData);
   return (
     <form>
       <table className='w-full mt-8'>

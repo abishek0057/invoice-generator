@@ -46,7 +46,7 @@ const App = () => {
     }
   };
   return (
-    <div className='flex flex-col md:flex-row max-w-7xl gap-x-3 mx-auto md:items-start mt-5'>
+    <form className='flex flex-col md:flex-row max-w-7xl gap-x-3 mx-auto md:items-start mt-5'>
       <div className='p-2 rounded-md bg-white flex-grow'>
         <div className='flex flex-wrap justify-between items-center'>
           <DatePicker sendInput={ReceiveInput} />
@@ -70,7 +70,7 @@ const App = () => {
         <RateInput title='Tax rate:' sendInput={ReceiveInput} />
         <RateInput title='Discount rate:' sendInput={ReceiveInput} />
       </div>
-    </div>
+    </form>
   );
 };
 

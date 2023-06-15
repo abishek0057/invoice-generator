@@ -20,6 +20,7 @@ const NameInput = ({ person, sendInput }) => {
         placeholder={person.replace(":", "") + " name"}
         onChange={handleChange}
         value={name}
+        required
       />
     </div>
   );
