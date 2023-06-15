@@ -74,8 +74,8 @@ const InvoiceTable = ({ itemData, setItemData }) => {
                     className='outline-none text-base font-normal bg-slate-100 p-2 rounded-md w-full'
                     readOnly
                     value={
-                      item.itemRate
-                        ? item.itemQuantity * Number(item.itemRate)
+                      item.itemRate && item.itemName
+                        ? (item.itemQuantity * Number(item.itemRate)).toFixed(2)
                         : "0.0"
                     }
                   />

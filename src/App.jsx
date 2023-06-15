@@ -15,16 +15,14 @@ const App = () => {
       itemRate: "",
     },
   ]);
-  const [inputValues, SetinputValues] = useState([
-    {
-      date: new Date().toJSON().slice(0, 10),
-      billNo: 1,
-      cashierName: "",
-      customerName: "",
-      taxRate: 0,
-      discountRate: 0,
-    },
-  ]);
+  const [inputValues, SetinputValues] = useState({
+    date: new Date().toJSON().slice(0, 10),
+    billNo: 1,
+    cashierName: "",
+    customerName: "",
+    taxRate: 0,
+    discountRate: 0,
+  });
   const ReceiveInput = (recValue) => {
     switch (recValue.type) {
       case "date":
