@@ -8,6 +8,7 @@ import InvoiceTable from "./components/InvoiceTable";
 import Total from "./components/Total";
 
 const App = () => {
+  const [showInvoice, setShowInvoice] = useState(true);
   const [itemData, setItemData] = useState([
     {
       itemName: "",
@@ -46,31 +47,33 @@ const App = () => {
     }
   };
   return (
-    <form className='flex flex-col md:flex-row max-w-7xl gap-x-3 mx-auto md:items-start mt-5'>
-      <div className='p-2 rounded-md bg-white flex-grow'>
-        <div className='flex flex-wrap justify-between items-center'>
-          <DatePicker sendInput={ReceiveInput} />
-          <InvoiceNumber sendInput={ReceiveInput} />
+    <div>
+      <form className='flex flex-col md:flex-row max-w-7xl gap-x-3 mx-auto md:items-start mt-5'>
+        <div className='p-2 rounded-md bg-white flex-grow'>
+          <div className='flex flex-wrap justify-between items-center'>
+            <DatePicker sendInput={ReceiveInput} />
+            <InvoiceNumber sendInput={ReceiveInput} />
+          </div>
+          <hr />
+          <h1 className='text-center text-3xl py-2 font-semibold'>INVOICE</h1>
+          <div className='flex gap-3 justify-start items-center pt-5 w-full'>
+            <NameInput person={"Cashier:"} sendInput={ReceiveInput} />
+            <NameInput person={"Customer:"} sendInput={ReceiveInput} />
+          </div>
+          <InvoiceTable setItemData={setItemData} itemData={itemData} />
+          <Total inputValues={inputValues} itemData={itemData} />
         </div>
-        <hr />
-        <h1 className='text-center text-3xl py-2 font-semibold'>INVOICE</h1>
-        <div className='flex gap-3 justify-start items-center pt-5 w-full'>
-          <NameInput person={"Cashier:"} sendInput={ReceiveInput} />
-          <NameInput person={"Customer:"} sendInput={ReceiveInput} />
+        <div className=' sticky top-5 flex flex-col justify-center px-2 md:w-3/12 gap-y-3'>
+          <CommonButton
+            btnName='Review Invoice'
+            customCSS='w-full'
+            onBtnClick={(e) => console.log(itemData)}
+          />
+          <RateInput title='Tax rate:' sendInput={ReceiveInput} />
+          <RateInput title='Discount rate:' sendInput={ReceiveInput} />
         </div>
-        <InvoiceTable setItemData={setItemData} itemData={itemData} />
-        <Total inputValues={inputValues} itemData={itemData} />
-      </div>
-      <div className=' sticky top-5 flex flex-col justify-center px-2 md:w-3/12 gap-y-3'>
-        <CommonButton
-          btnName='Review Invoice'
-          customCSS='w-full'
-          onBtnClick={(e) => console.log(itemData)}
-        />
-        <RateInput title='Tax rate:' sendInput={ReceiveInput} />
-        <RateInput title='Discount rate:' sendInput={ReceiveInput} />
-      </div>
-    </form>
+      </form>
+    </div>
   );
 };
 

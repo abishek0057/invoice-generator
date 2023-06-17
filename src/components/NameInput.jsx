@@ -2,13 +2,21 @@ import React, { useState } from "react";
 
 const NameInput = ({ person, sendInput }) => {
   const [name, setName] = useState("");
+  const [isvalid, setIsValid] = useState(true);
 
   const handleChange = (e) => {
-    setName(e.target.value);
-    sendInput({
-      value: e.target.value,
-      type: person.replace(":", "").toLowerCase(),
-    });
+    const inputValue = e.target.value;
+    const isValidInput = /^[A-Za-z ]+$/.test(inputValue);
+    setName(inputValue);
+    if (!isValidInput) {
+      setIsValid(false);
+    } else {
+      setIsValid(true);
+      sendInput({
+        value: inputValue,
+        type: person.replace(":", "").toLowerCase(),
+      });
+    }
   };
 
   return (
@@ -22,6 +30,7 @@ const NameInput = ({ person, sendInput }) => {
         value={name}
         required
       />
+      {!isvalid && <p className='absolute pl-2 text-red-600'>Invalid name</p>}
     </div>
   );
 };

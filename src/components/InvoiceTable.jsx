@@ -23,7 +23,7 @@ const InvoiceTable = ({ itemData, setItemData }) => {
   };
 
   return (
-    <form>
+    <div>
       <table className='w-full mt-8'>
         <thead>
           <tr>
@@ -109,7 +109,7 @@ const InvoiceTable = ({ itemData, setItemData }) => {
           ]);
         }}
       />
-    </form>
+    </div>
   );
 };
 
