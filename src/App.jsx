@@ -6,6 +6,7 @@ import CommonButton from "./components/CommonButton";
 import InvoiceNumber from "./components/InvoiceNumber";
 import InvoiceTable from "./components/InvoiceTable";
 import Total from "./components/Total";
+import ShowInvoice from "./components/ShowInvoice";
 
 const App = () => {
   const [showInvoice, setShowInvoice] = useState(true);
@@ -48,6 +49,7 @@ const App = () => {
   };
   return (
     <div>
+      {showInvoice && <ShowInvoice />}
       <form className='flex flex-col md:flex-row max-w-7xl gap-x-3 mx-auto md:items-start mt-5'>
         <div className='p-2 rounded-md bg-white flex-grow'>
           <div className='flex flex-wrap justify-between items-center'>
