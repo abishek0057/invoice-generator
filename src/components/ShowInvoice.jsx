@@ -2,7 +2,7 @@ import { useRef, useEffect } from "react";
 import { toPng } from "html-to-image";
 import { jsPDF } from "jspdf";
 
-import Calculation from "../helper/calculation";
+import Calculation from "../helper/Calculation";
 
 const ShowInvoice = ({ setShowInvoice, itemData, inputValues }) => {
   const modalRef = useRef(null);

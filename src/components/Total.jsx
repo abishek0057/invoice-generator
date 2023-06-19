@@ -1,4 +1,4 @@
-import Calculation from "../helper/calculation";
+import Calculation from "../helper/Calculation";
 
 const Total = ({ itemData, inputValues }) => {
   const itemCalculation = new Calculation(
