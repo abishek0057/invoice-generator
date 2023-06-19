@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const DatePicker = ({ sendInput }) => {
   const [date, setDate] = useState(new Date().toJSON().slice(0, 10));

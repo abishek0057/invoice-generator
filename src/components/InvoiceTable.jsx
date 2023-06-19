@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import CommonButton from "./CommonButton";
 
 const InvoiceTable = ({ itemData, setItemData }) => {

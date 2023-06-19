@@ -1,5 +1,3 @@
-import React from "react";
-
 const CommonButton = ({ btnName, onBtnClick, customCSS }) => {
   return (
     <button

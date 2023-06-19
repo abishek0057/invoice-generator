@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const RateInput = ({ sendInput, title }) => {
   const [inputValue, setInputValue] = useState("");

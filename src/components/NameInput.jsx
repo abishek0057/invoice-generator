@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const NameInput = ({ person, sendInput }) => {
   const [name, setName] = useState("");
