@@ -4,7 +4,6 @@ const RateInput = ({ sendInput, title }) => {
   const [inputValue, setInputValue] = useState("");
   const [validInp, setValidInp] = useState(true);
   const handleChange = (e) => {
-    console.log(e.target.value.length, e.target.value);
     const inpVal = e.target.value;
     if (inpVal === "") {
       setValidInp(true);

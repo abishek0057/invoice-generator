@@ -9,7 +9,7 @@ import Total from "./components/Total";
 import ShowInvoice from "./components/ShowInvoice";
 
 const App = () => {
-  const [showInvoice, setShowInvoice] = useState(true);
+  const [showInvoice, setShowInvoice] = useState(false);
   const [itemData, setItemData] = useState([
     {
       itemName: "",
@@ -49,7 +49,14 @@ const App = () => {
   };
   return (
     <div>
-      {showInvoice && <ShowInvoice />}
+      {showInvoice && (
+        <ShowInvoice
+          setShowInvoice={setShowInvoice}
+          inputValues={inputValues}
+          itemData={itemData}
+          setItemData={setItemData}
+        />
+      )}
       <form className='flex flex-col md:flex-row max-w-7xl gap-x-3 mx-auto md:items-start mt-5'>
         <div className='p-2 rounded-md bg-white flex-grow'>
           <div className='flex flex-wrap justify-between items-center'>
@@ -69,7 +76,7 @@ const App = () => {
           <CommonButton
             btnName='Review Invoice'
             customCSS='w-full'
-            onBtnClick={(e) => console.log(itemData)}
+            onBtnClick={(e) => setShowInvoice(true)}
           />
           <RateInput title='Tax rate:' sendInput={ReceiveInput} />
           <RateInput title='Discount rate:' sendInput={ReceiveInput} />

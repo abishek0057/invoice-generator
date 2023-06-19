@@ -109,6 +109,21 @@ const InvoiceTable = ({ itemData, setItemData }) => {
           ]);
         }}
       />
+      <CommonButton
+        customCSS={`mt-5 bg-red-600 ml-4 ${
+          itemData.length > 2 ? "inline-block" : "hidden"
+        }`}
+        btnName='Remove all'
+        onBtnClick={(e) => {
+          setItemData([
+            {
+              itemName: "",
+              itemQuantity: 1,
+              itemRate: "",
+            },
+          ]);
+        }}
+      />
     </div>
   );
 };

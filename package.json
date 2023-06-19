@@ -11,9 +11,10 @@
     "host": "vite --host"
   },
   "dependencies": {
+    "html-to-image": "^1.11.11",
+    "jspdf": "^2.5.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-hook-form": "^7.44.3"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",
