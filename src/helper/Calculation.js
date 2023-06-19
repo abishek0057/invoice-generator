@@ -1,4 +1,4 @@
-class Calculation {
+export default class Calculation {
   constructor(itemArray, discount, tax) {
     this.itemArray = itemArray;
     this.discount = discount;
@@ -25,5 +25,3 @@ class Calculation {
     return this.calSubTotal() - this.discountAmt() + this.taxAmt();
   }
 }
-
-export default Calculation;
